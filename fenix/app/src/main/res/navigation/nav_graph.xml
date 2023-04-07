@@ -1432,4 +1432,17 @@
                 app:popExitAnim="@anim/slide_out_right" />
         </fragment>
     </navigation>
+
+    <dialog
+        android:id="@+id/tldrFragment"
+        android:name="org.mozilla.fenix.tldr.TldrFragment"
+        android:label="TldrFragment">
+        <argument
+            android:name="url"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+
+    <action android:id="@+id/action_global_tldrFragment" app:destination="@id/tldrFragment"/>
 </navigation>

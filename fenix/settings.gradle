@@ -18,6 +18,9 @@ include ':mozilla-detekt-rules'
 include ':mozilla-lint-rules'
 include ':benchmark'
 
+include ':service-openai'
+include ':feature-tldr'
+
 gradle.projectsLoaded { ->
     // Disables A-C tests and lint when building Fenix.
     gradle.allprojects { project ->

@@ -550,6 +550,7 @@ dependencies {
     implementation project(':feature-webcompat')
     implementation project(':feature-webnotifications')
     implementation project(':feature-webcompat-reporter')
+    implementation project(':feature-tldr')
 
     implementation project(':service-pocket')
     implementation project(':service-contile')
@@ -560,6 +561,7 @@ dependencies {
     implementation project(':service-glean')
     implementation project(':service-location')
     implementation project(':service-nimbus')
+    implementation project(':service-openai')
 
     implementation project(':support-webextensions')
     implementation project(':support-base')
