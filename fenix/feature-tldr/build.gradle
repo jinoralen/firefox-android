@@ -58,7 +58,6 @@ dependencies {
 
     implementation project(':concept-toolbar')
     implementation project(':service-openai')
-    implementation project(':lib-state')
 
     testImplementation project(':support-test')
     testImplementation FenixDependencies.androidx_junit
