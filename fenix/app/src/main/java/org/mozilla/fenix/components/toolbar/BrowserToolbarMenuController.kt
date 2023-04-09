@@ -49,6 +49,8 @@ import org.mozilla.fenix.ext.openSetDefaultBrowserOption
 import org.mozilla.fenix.settings.deletebrowsingdata.deleteAndQuit
 import org.mozilla.fenix.utils.Do
 import org.mozilla.fenix.utils.Settings
+import org.mozilla.fenix.wc.WcFragment
+import org.mozilla.fenix.wc.WcFragmentDirections
 
 /**
  * An interface that handles events from the BrowserToolbar menu, triggered by the Interactor
@@ -388,6 +390,9 @@ class DefaultBrowserToolbarMenuController(
                         .show()
                 }
             }
+            ToolbarMenu.Item.WalletConnect -> {
+                navController.navigate(WcFragmentDirections.actionGlobalWcFragment())
+            }
         }
     }
 
@@ -459,6 +464,8 @@ class DefaultBrowserToolbarMenuController(
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("set_default_browser"))
             is ToolbarMenu.Item.RemoveFromTopSites ->
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("remove_from_top_sites"))
+            ToolbarMenu.Item.WalletConnect ->
+                Events.browserMenuAction.record(Events.BrowserMenuActionExtra("wc"))
         }
     }
 

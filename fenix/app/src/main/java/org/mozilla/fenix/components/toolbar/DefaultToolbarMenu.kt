@@ -222,6 +222,14 @@ open class DefaultToolbarMenu(
         id = WebExtensionPlaceholderMenuItem.MAIN_EXTENSIONS_MENU_ID,
     )
 
+    private val wcItem = BrowserMenuImageText(
+        context.getString(R.string.library_wc),
+        R.drawable.ic_wc_logo,
+        primaryTextColor(),
+    ) {
+        onItemTapped.invoke(ToolbarMenu.Item.WalletConnect)
+    }
+
     private val findInPageItem = BrowserMenuImageText(
         label = context.getString(R.string.browser_menu_find_in_page),
         imageResource = R.drawable.mozac_ic_search,
@@ -368,6 +376,7 @@ open class DefaultToolbarMenu(
                 bookmarksItem,
                 historyItem,
                 downloadsItem,
+                wcItem,
                 extensionsItem,
                 syncMenuItem(),
                 BrowserMenuDivider(),

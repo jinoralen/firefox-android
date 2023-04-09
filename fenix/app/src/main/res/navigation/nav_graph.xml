@@ -1432,4 +1432,10 @@
                 app:popExitAnim="@anim/slide_out_right" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/wcFragment"
+        android:name="org.mozilla.fenix.wc.WcFragment"
+        android:label="Wallet Connect" />
+
+    <action android:id="@+id/action_global_wcFragment" app:destination="@id/wcFragment"/>
 </navigation>
