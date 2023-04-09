@@ -18,6 +18,7 @@ import androidx.core.content.getSystemService
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.work.Configuration.Builder
 import androidx.work.Configuration.Provider
+import app.jinoralen.service.wc.WcService
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -125,6 +126,8 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
 
     override fun onCreate() {
         super.onCreate()
+
+        WcService.init(this)
 
         if (shouldShowPrivacyNotice()) {
             // For Mozilla Online build: Delay initialization on first run until privacy notice
