@@ -5,9 +5,12 @@
 package org.mozilla.fenix.components.toolbar
 
 import android.content.Context
+import android.view.View
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.findNavController
+import app.jinoralen.feature.tldr.toolbar.TldrToolbarButton
 import mozilla.components.browser.state.selector.normalTabs
 import mozilla.components.browser.state.selector.privateTabs
 import mozilla.components.browser.toolbar.BrowserToolbar
@@ -23,6 +26,7 @@ import org.mozilla.fenix.components.toolbar.interactor.BrowserToolbarInteractor
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.theme.ThemeManager
+import org.mozilla.fenix.tldr.TldrFragmentDirections
 
 /**
  * Feature configuring the toolbar when in display mode.
@@ -126,6 +130,9 @@ class DefaultToolbarIntegration(
             it.updateMenu(context.settings().toolbarPosition)
         }
 
+        val tldrAction = TldrToolbarButton(showTldr = { showTldrScreen() })
+        toolbar.addBrowserAction(tldrAction)
+
         val tabsAction = TabCounterToolbarButton(
             lifecycleOwner = lifecycleOwner,
             showTabs = {
@@ -145,6 +152,18 @@ class DefaultToolbarIntegration(
         tabsAction.updateCount(tabCount)
 
         toolbar.addBrowserAction(tabsAction)
+    }
+
+    private fun View.showTldrScreen() {
+        val state = store.state
+
+        val selectedTab = state.tabs.single { tabSessionState ->
+            tabSessionState.id == state.selectedTabId
+        }
+
+        val navDirection = TldrFragmentDirections.actionGlobalTldrFragment(selectedTab.content.url)
+
+        findNavController().navigate(navDirection)
     }
 
     override fun start() {

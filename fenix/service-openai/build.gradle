@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.jinoralen.service.openai'
+
+    compileSdkVersion config.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation FenixDependencies.kotlin_coroutines
+    implementation FenixDependencies.androidx_core_ktx
+
+    // import Kotlin API client BOM
+    implementation platform('com.aallam.openai:openai-client-bom:3.2.0')
+
+    // define dependencies without versions
+    implementation 'com.aallam.openai:openai-client'
+    implementation 'io.ktor:ktor-client-okhttp'
+
+    testImplementation project(':support-test')
+    testImplementation FenixDependencies.androidx_junit
+    testImplementation FenixDependencies.androidx_test_extensions
+    testImplementation FenixDependencies.mockk
+    testImplementation FenixDependencies.kotlin_coroutines_test
+}
